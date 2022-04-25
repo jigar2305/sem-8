@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="container" style="overflow-y: auto; background-color: white;">
+            <div class="row mt">
+                <div class="col-lg-12">
+                    <div class="col-lg-9">
+                        <h4 style="font-size: 30px; color: brown; font-weight: bolder;"><i
+                            class="fa fa-angle-right"></i>employee list</h4>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="{%url 'add_employee'%}" class='btn btn-success ' style="font-size: 30px; border-radius: 5px; margin-left: 50px;">ADD NEW</a>
+                        </div>
+                    </div>
+                    {% include "massage.html" %}
+            </div>
+            <hr>
+            <div class="row mt">
+                <!-- tester start -->
+                <div class="col-lg-12" style="margin-top: 10px;">
+                    <div class="col-lg-9">
+                        <h4 ><i
+                                class="fa fa-angle-right"></i>Tester</h4>
+                    </div>
+
+                </div>
+                <br>
+                <table class="table" style="font-size: 15px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">picture</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in users %}
+                        {% if employee.role.rolename == 'Tester' %}
+
+                        <tr style="border-bottom: 2px solid dimgray;">
+                            {% if employee.picture %}
+                            <td ><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{{ employee.picture.url }}" alt=""
+                                    style="height: 40px; width: 40px; border-radius: 100%;"></a>
+                            </td>
+                            {% else %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{% static 'img/profile.png' %}" alt="" style="height: 40px; width: 40px; border-radius: 100%;">
+                            </a></td>
+                            {% endif %}
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.phone_number}}</td>
+                            <td>
+                                <a href="{% url 'delete_employee' employee.pk%}" class="btn btn-danger btn-xs fa fa-trash-o"></a>
+                            </td>
+                            
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- tester end -->
+                <!-- devloper start -->
+                <div class="col-lg-12" style="margin-top: 50px;">
+                    <div class="col-lg-9">
+                        <h4 ><i
+                                class="fa fa-angle-right"></i>Devloper</h4>
+                    </div>
+                </div>
+                <br>
+                <table class="table" style="font-size: 15px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">picture</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in users %}
+                        {% if employee.role.rolename == 'Devloper' %}
+
+                        <tr style="border-bottom: 2px solid dimgray;">
+                            {% if employee.picture %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{{ employee.picture.url }}" alt=""
+                                    style="height: 40px; width: 40px; border-radius: 100%;"></a>
+                            </td>
+                            {% else %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{% static 'img/profile.png' %}" alt="" style="height: 40px; width: 40px; border-radius: 100%;">
+                            </a></td>
+                            {% endif %}
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.phone_number}}</td>
+                            <td>
+                                <a href="{% url 'delete_employee' employee.pk%}" class="btn btn-danger btn-xs fa fa-trash-o"></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- devloper end -->
+                <!-- manager start-->
+                <div class="col-lg-12" style="margin-top: 50px;">
+                    <div class="col-lg-9">
+                        <h4><i class="fa fa-angle-right"></i>Manager</h4>
+                    </div>
+                </div>
+                <br>
+                <table class="table" style="font-size: 15px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">picture</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in users %}
+                        {% if employee.role.rolename == 'Manager' %}
+
+                        <tr style="border-bottom: 2px solid dimgray;">
+                            {% if employee.picture %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{{ employee.picture.url }}" alt=""
+                                    style="height: 40px; width: 40px; border-radius: 100%;"></a>
+                            </td>
+                            {% else %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{% static 'img/profile.png' %}" alt="" style="height: 40px; width: 40px; border-radius: 100%;">
+                            </a></td>
+                            {% endif %}
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.phone_number}}</td>
+                            <td>
+                                <a href="{% url 'delete_employee' employee.pk%}" class="btn btn-danger btn-xs fa fa-trash-o"></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- manager end -->
+                <!-- admin start -->
+                <div class="col-lg-12" style="margin-top: 50px;">
+                    <div class="col-lg-9">
+                        <h4 ><i class="fa fa-angle-right"></i>Admin</h4>
+                    </div>
+                </div>
+                <br>
+                <table class="table" style="font-size: 15px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">picture</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in users %}
+                        {% if employee.role.rolename == 'Admin' %}
+
+                        <tr style="border-bottom: 2px solid dimgray;">
+                            {% if employee.picture %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{{ employee.picture.url }}" alt=""
+                                    style="height: 40px; width: 40px; border-radius: 100%;"></a>
+                            </td>
+                            {% else %}
+                            <td><a href="{% url 'employeedetail' employee.pk %}">
+                                <img src="{% static 'img/profile.png' %}" alt="" style="height: 40px; width: 40px; border-radius: 100%;">
+                            </a></td>
+                            {% endif %}
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.phone_number}}</td>
+                            <td>
+                                <a href="{% url 'delete_employee' employee.pk%}" class=" link-delete btn btn-danger btn-xs fa fa-trash-o"></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- admin end -->
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

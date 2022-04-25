@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+        {% include "massage.html" %}
+        <div class="row mt">
+            <div class="col-lg-12">
+            <div class="col-lg-9">
+                <h4 style="font-size: 20px;"><i class="fa fa-angle-right"></i>Issue List</h4>
+            </div>
+            <div class="col-lg-3">
+                <a href="{%url 'add_bug'%}"  class='btn btn-danger' style="font-size: 15px; border-radius: 5px;">ADD NEW</a>
+            </div> 
+            <br>
+            <hr>
+                
+                <table class="table" style="font-size: 15px;">
+                        <thead class="thead-light">
+                            <tr>
+                               
+                                <th scope="col">name</th>
+                                <th scope="col">type</th>
+                                <th scope="col">Assign</th>
+                                <th scope="col">status</th>
+                                <th scope="col">project</th>
+                                <th scope="col">start</th>
+                                <th scope="col">completation</th>
+                                <th scope="col">action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bug in bugs %}
+                            <tr style="border-bottom: 2px solid dimgray;">
+                                
+                                <td><a href="{% url 'bugdetail' bug.pk %}" style="text-decoration: none; color: inherit;">{{bug.bugname}}</a></td>
+                                <td>{{bug.bugtype}}</td>
+                                <td>{{bug.employee.username}}</td>
+                                <td>{{bug.status.statusName}}</td>
+                                <td>{{bug.project.projectname}}</td>
+                                <td>{{bug.startDate}}</td>
+                                <td>{{bug.completionDate}}</td>
+                                <td>
+                                    <a href="{% url 'update_bug' bug.pk%}" class="btn btn-primary btn-xs fa fa-pencil"></a>
+                                    <a href="{% url 'deletebug' bug.pk %}" class="btn btn-danger btn-xs fa fa-trash"></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

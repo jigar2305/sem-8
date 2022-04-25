@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+  .card{
+    background-color: white;
+    height: max-content;
+    border-radius: 5px;
+  }
+</style>
+<script>
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+  
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  }
+  </script>
+<section id="main-content" style="background-color:white; color:black;">
+  <section class="wrapper">
+    <div class="container" style="margin: 25px 0px; ">
+      <h1 style="font-weight: bolder; font-size: 30px;">Bug tracking</h1>
+    </div>
+    <div class="row mt inbox" style="margin: 50px 0px;">
+      <div class="col-lg-18" id="box" style="background-color:white;">
+        <div class="col-lg-2" id="scroll" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <header class="head" style="color: blue;">issue Detected</header>
+          {% for bug in bugs %}
+          {% if bug.status.statusName == 'reported' %}
+          <div class="card " draggable="true" ondragstart="drag(event)" id="drag1">
+            <div class="card-header">
+              {{bug.bugtype}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{bug.bugname}}</h5>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <div class="col-lg-2" id="scroll" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <header class="head" style="color: black;">on progress</header>
+          {% for bug in bugs %}
+            {% if bug.status.statusName == 'pending'%}
+          <div class="card" draggable="true" ondragstart="drag(event)" id="drag1">
+            <div class="card-header" >
+              {{bug.bugtype}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{bug.bugname}}</h5>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      <div class="col-lg-2" id="scroll" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <header class="head" style="color: green;">done</header>
+        {% for bug in bugs %}
+          {% if bug.status.statusName == 'done'%}
+          <div class="card " draggable="true" ondragstart="drag(event)" id="drag1">
+            <div class="card-header">
+              {{bug.bugtype}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{bug.bugname}}</h5>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      <div class="col-lg-2" id="scroll" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <header class="head" style="color: red;">delayed</header>
+        {% for bug in bugs %}
+          {% if bug.status.statusName == 'deley'%}
+          <div class="card " draggable="true" ondragstart="drag(event)" id="drag1">
+            <div class="card-header">
+              {{bug.bugtype}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{bug.bugname}}</h5>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+</section>
+</section>
+
+
+{% endblock content %}

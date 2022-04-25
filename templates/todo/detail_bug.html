@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    dd{
+        background-color: whitesmoke;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+    }
+    h1{
+        font-size: 30px;
+        color: brown;
+        font-weight: bolder;
+    }
+</style>
+<section id="main-content">
+    <section class="wrapper">
+        <div class="card" style="content: initial; height: inherit;">
+            <div class="card-header">
+                <h1 class="card-title"> {{ bug.bugname }} Details</h1>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        bugname:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.bugname }}
+                      </dd>
+                    <dt class="col-sm-2">
+                        bug description:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.decsription }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        bug status:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.status }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        bug project:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.project }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        startdate:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.startDate }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        enddate:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.completionDate }}   
+                    </dd>
+                    <dt class="col-sm-2">
+                        assign to:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ bug.employee }}
+                    </dd>
+                    </dl>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

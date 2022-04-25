@@ -1,0 +1,32 @@
+#scroll{
+    background-color:#f2f2f2;
+    border: 2px solid black;
+    height: 400px;
+    overflow-y: scroll;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+#box{
+    margin-left:20px;
+    overflow-x: scroll;
+    overflow-y:hidden ;
+    padding: 5px;
+}
+
+.inbox{
+    background-color: ghostwhite;
+    border-bottom: 1px solid rgb(56, 54, 54);
+    border-top: 1px solid rgb(56, 54, 54);
+}
+.head{
+    font-weight: bolder;
+    color: black;
+    font-size: larger;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    
+}
+.card{
+    background-color:white;
+}

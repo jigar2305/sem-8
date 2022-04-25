@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    dd {
+        background-color: whitesmoke;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+
+    }
+
+    h1 {
+        font-size: 30px;
+        color: brown;
+        font-weight: bolder;
+    }
+</style>
+<section id="main-content">
+    <section class="wrapper">
+        <div class="card" style="content: initial; height: inherit;">
+            <div class="card-header">
+                <h1>{{ projects.projectname }} Details</h1>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        description:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ projects.description }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        technology:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ projects.technology }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        startDate:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ projects.startDate }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        completionDate:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ projects.completionDate }}
+                    </dd>
+                </dl>
+                <div class="row mt inbox" style="margin: 50px 0px;">
+                    <h1 style="margin: 10px;">all bugs related to this projects ....</h1>
+                  
+                    <div class="col-lg-12" style="background-color:white; overflow-x: auto;">
+                        {% for bug in bugs %}
+                        {% if projects.id == bug.project_id %}
+                        <div class="col-lg-6" style="font-size: 14px; padding: 2px;">
+                        <div class="card" style="content: initial; height: inherit; width: fit-content;">
+                            <div class="card-header">
+                                <h4>{{ bug.bugname }} Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <dl class="row">
+                                    <dt class="col-sm-2">
+                                        bugtype:
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        {{bug.bugtype}}
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        Assign:
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        {{bug.employee.username}}
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        status:
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        {{bug.status.statusName}}
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        startdate:
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        {{bug.startDate}}
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        completiondate:
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        {{bug.completionDate}}
+                                    </dd>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

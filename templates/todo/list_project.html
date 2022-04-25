@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row mt">
+            <div class="col-lg-12">
+            <div class="col-lg-9">
+                <h4><i class="fa fa-angle-right"></i>Project List</h4>
+            </div>
+            <div class="col-lg-3">
+                <a href="{%url 'add_project'%}"  class='btn btn-danger'style="font-size: 15px; border-radius: 5px;">ADD NEW</a>
+            </div> 
+            <br>
+            <hr>
+                 
+                <table class="table" style="font-size: 15px;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">name</th>
+                                <th scope="col">description</th>
+                                <th scope="col">technology</th>
+                                <th scope="col">start</th>
+                                <th scope="col">complate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for project in projects %}
+                            <tr style="border-bottom: 2px solid dimgray;">
+                                <td>{{project.id}}</td>
+                                <td><a href="{%url 'detail_project' project.pk %}" style="color: black;">  {{project.projectname}}</a></td>
+                                <td>{{project.description}}</td>
+                                <td>{{project.technology}}</td>
+                                <td>{{project.startDate}}</td>
+                                <td>{{project.completionDate}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

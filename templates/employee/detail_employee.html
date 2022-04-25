@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    dd{
+        background-color: whitesmoke;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+    }
+    h1{
+        font-size: 30px;
+        color: brown;
+        font-weight: bolder;
+    }
+</style>
+<section id="main-content">
+    <section class="wrapper">
+        <div class="card" style="content: initial; height: inherit;">
+            <div class="card-header">
+                <h1 class="card-title"> {{ employee.username }} Details</h1>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        profile-pic
+                    </dt>
+                    <dd class="col-sm-10">
+                        {% if employee.picture %}
+                        <img src="{{ employee.picture.url }}" alt=""
+                            style="height: 150px; width: 150px;">
+                        {% else %}
+                        <img src="{% static 'img/profile.png' %}" alt=""
+                            style="height: 150px; width: 150px;">
+                        {% endif %}
+                    </dd>
+                    <dt class="col-sm-2">
+                        employee name:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.username }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        employee email:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.email }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        employee phone:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.phone_number }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        employee role:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.role }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        employee address:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.address }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        city:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.city }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        state:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.state }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        zipcode:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.pincode }}
+                    </dd>
+                    <dt class="col-sm-2">
+                        country:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {{ employee.country }}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

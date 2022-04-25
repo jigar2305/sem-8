@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="col-lg-12" style="background-color: black; margin-bottom: 10px;">
+                    <center>
+                    <h3 style="font-size: 20px; color: white; font-weight: bolder; "></i>
+                        Add bug</h3>
+                    </center>
+                </div>
+                <div class="col-lg-6">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="container">
+                            {{ form.bugname | as_crispy_field }}
+                            {{ form.bugtype | as_crispy_field }}
+                            {{ form.decsription | as_crispy_field }}
+                            {{ form.status | as_crispy_field }}
+                            {{ form.project | as_crispy_field }}
+                            {{ form.startDate | as_crispy_field }} <span><p>please enter in yy-mm-dd format</p></span>
+                            {{ form.completionDate | as_crispy_field }}<span><p>please enter in yy-mm-dd format</p></span>
+                            {{ form.employee | as_crispy_field }}
+                            <button type="submit" class="btn btn-success"
+                                style="width: 90px; font-size: larger;">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}
